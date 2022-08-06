@@ -36,4 +36,45 @@ export const Container = styled.div`
     line-height: 16px;
     color: #868e96;
   }
+
+  button {
+    color: #868e96;
+    background-color: transparent;
+    border: none;
+  }
+
+  button:hover {
+    color: #f8f9fa;
+  }
+
+  .auxiliar {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1031px) {
+    .card {
+      width: 45rem;
+    }
+  }
+
+  @media (max-width: 792px) {
+    .card {
+      width: 31.5rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .card {
+      width: 22.5rem;
+    }
+  }
+
+  @media (max-width: 401px) {
+    .card {
+      width: 16.5rem;
+    }
+  }
 `;

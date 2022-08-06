@@ -40,10 +40,15 @@ const Form = () => {
       <input placeholder="Digite aqui seu email" {...register("email")} />
       <p className="error">{errors.email?.message}</p>
       <label>Senha</label>
-      <input placeholder="Digite aqui sua senha" {...register("password")} />
+      <input
+        type="password"
+        placeholder="Digite aqui sua senha"
+        {...register("password")}
+      />
       <p className="error">{errors.password?.message}</p>
       <label>Confirmar Senha</label>
       <input
+        type="password"
         placeholder="Digite novamente sua senha"
         {...register("ConfirmedPassword")}
       />

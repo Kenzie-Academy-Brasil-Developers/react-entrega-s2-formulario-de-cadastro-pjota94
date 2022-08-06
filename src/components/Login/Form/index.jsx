@@ -41,7 +41,11 @@ const Form = ({ handleHome }) => {
       <p className="error">{errors.email?.message}</p>
 
       <label className="label-senha">Senha</label>
-      <input placeholder="Digite sua senha" {...register("password")} />
+      <input
+        type="password"
+        placeholder="Digite sua senha"
+        {...register("password")}
+      />
       <p className="error">{errors.password?.message}</p>
       <button type="submit">Entrar</button>
     </FormStyle>

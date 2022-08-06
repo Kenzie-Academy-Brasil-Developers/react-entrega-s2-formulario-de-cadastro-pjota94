@@ -26,4 +26,32 @@ export const Container = styled.div`
     line-height: 22px;
     color: rgba(134, 142, 150, 1);
   }
+
+  @media (max-width: 1031px) {
+    div {
+      width: 46.5rem;
+    }
+  }
+
+  @media (max-width: 792px) {
+    div {
+      width: 32.5rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    div {
+      width: 23.5rem;
+    }
+  }
+
+  @media (max-width: 401px) {
+    div {
+      width: 18.5rem;
+      flex-direction: column;
+    }
+    p {
+      margin-bottom: 10px;
+    }
+  }
 `;

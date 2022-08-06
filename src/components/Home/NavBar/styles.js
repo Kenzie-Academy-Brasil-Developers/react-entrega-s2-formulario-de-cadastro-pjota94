@@ -28,4 +28,28 @@ export const Container = styled.div`
   button:hover {
     background-color: rgba(52, 59, 65, 1);
   }
+
+  @media (max-width: 1031px) {
+    div {
+      width: 46.5rem;
+    }
+  }
+
+  @media (max-width: 792px) {
+    div {
+      width: 32.5rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    div {
+      width: 23.5rem;
+    }
+  }
+
+  @media (max-width: 401px) {
+    div {
+      width: 18.5rem;
+    }
+  }
 `;

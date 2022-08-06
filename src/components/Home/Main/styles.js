@@ -59,4 +59,43 @@ export const Container = styled.div`
     padding-bottom: 15px;
     margin-bottom: 15px;
   }
+
+  @media (max-width: 1031px) {
+    div {
+      width: 46.5rem;
+    }
+
+    .box-cards {
+      width: 46.5rem;
+    }
+  }
+
+  @media (max-width: 792px) {
+    div {
+      width: 32.5rem;
+    }
+    .box-cards {
+      width: 32.5rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    div {
+      width: 23.5rem;
+    }
+
+    .box-cards {
+      width: 23.5rem;
+    }
+  }
+
+  @media (max-width: 401px) {
+    div {
+      width: 18.5rem;
+    }
+
+    .box-cards {
+      width: 18.5rem;
+    }
+  }
 `;

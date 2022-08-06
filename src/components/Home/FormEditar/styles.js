@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 23.062rem;
-  height: 19.25rem;
+  height: 13.25rem;
   background-color: rgb(33, 37, 41);
   display: flex;
   justify-content: center;
@@ -91,10 +91,6 @@ export const Container = styled.div`
 
   @media (max-width: 401px) {
     width: 17.062rem;
-
-    input {
-      width: 14.562rem;
-    }
 
     select {
       width: 14.562rem;

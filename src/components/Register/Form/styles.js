@@ -66,4 +66,18 @@ export const FormStyle = styled.form`
     color: rgba(255, 87, 127, 1);
     font-size: 10px;
   }
+
+  @media (max-width: 430px) {
+    input {
+      width: 16.5rem;
+    }
+
+    select {
+      width: 16.5rem;
+    }
+
+    button {
+      width: 16.5rem;
+    }
+  }
 `;

@@ -4,7 +4,7 @@ import Cards from "../Cards";
 import MainVazio from "../MainVazio";
 import { Container } from "./styles";
 
-const Main = ({ setIsModal, dadosUser, setDadosUser }) => {
+const Main = ({ setIsModal, setIsModalEdit, setDadosUser, setIdCard }) => {
   const abrirModal = () => {
     setIsModal(true);
   };
@@ -22,7 +22,6 @@ const Main = ({ setIsModal, dadosUser, setDadosUser }) => {
   }, [idUser]);
   const lengthArray = dadosTech.length;
 
-  console.log(dadosTech);
   return (
     <>
       <Container>
@@ -37,11 +36,13 @@ const Main = ({ setIsModal, dadosUser, setDadosUser }) => {
           <div className="box-cards">
             {dadosTech.map((elem, index) => (
               <Cards
-                dadosUser={dadosUser}
+                id={elem.id}
                 setDadosUser={setDadosUser}
                 key={index}
                 title={elem.title}
                 status={elem.status}
+                setIsModalEdit={setIsModalEdit}
+                setIdCard={setIdCard}
               />
             ))}
           </div>
