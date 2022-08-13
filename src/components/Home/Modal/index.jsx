@@ -1,9 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { AuthContext } from "../../../context/UserContext";
 import DivTop from "../DivTop";
 import Form from "../Form";
 import { Container } from "./styles";
 
-const Modal = ({ setIsModal }) => {
+const Modal = () => {
+  const { setIsModal } = useContext(AuthContext);
   const modalRef = useRef();
 
   useEffect(() => {

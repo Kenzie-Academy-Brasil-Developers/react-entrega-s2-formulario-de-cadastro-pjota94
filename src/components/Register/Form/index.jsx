@@ -1,14 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import api from "../../../services/api";
 import { FormStyle } from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../../../validator/registerUser";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/UserContext";
 
 const Form = () => {
-  const navigate = useNavigate();
-
+  const { onRegister } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -17,22 +15,8 @@ const Form = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    api
-      .post("/users", data)
-      .then((res) => {
-        console.log(res);
-        navigate("/", { replace: true });
-        toast.success("Conta criada com sucesso! ;)");
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-        toast.error("Ops! Algo deu errado");
-      });
-  };
-
   return (
-    <FormStyle onSubmit={handleSubmit(onSubmit)}>
+    <FormStyle onSubmit={handleSubmit(onRegister)}>
       <label>Nome</label>
       <input placeholder="Digite aqui seu nome" {...register("name")} />
       <p className="error">{errors.name?.message}</p>

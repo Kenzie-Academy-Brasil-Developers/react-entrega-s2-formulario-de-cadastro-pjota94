@@ -1,13 +1,12 @@
 import { useForm } from "react-hook-form";
 import { FormStyle } from "./styles";
-import api from "../../../services/api";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../../../validator/loginUser";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/UserContext";
 
-const Form = ({ handleHome }) => {
-  const navigate = useNavigate();
+const Form = () => {
+  const { onLogin } = useContext(AuthContext);
 
   const {
     register,
@@ -17,25 +16,8 @@ const Form = ({ handleHome }) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    api
-      .post("/sessions", data)
-      .then((res) => {
-        console.log(res);
-        window.localStorage.clear();
-        window.localStorage.setItem("@kenzie:token", res.data.token);
-        window.localStorage.setItem("@kenzie:id", res.data.user.id);
-        navigate("/home", { replace: true });
-        toast.success("Usuário logado com sucesso");
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-        toast.error("E-mail ou Senha Inválido");
-      });
-  };
-
   return (
-    <FormStyle onSubmit={handleSubmit(onSubmit)}>
+    <FormStyle onSubmit={handleSubmit(onLogin)}>
       <label className="label-email">Email</label>
       <input placeholder="Digite seu nome" {...register("email")} />
       <p className="error">{errors.email?.message}</p>

@@ -27,6 +27,20 @@ export const Container = styled.div`
     color: rgba(134, 142, 150, 1);
   }
 
+  .loading {
+    animation: myLoading 1s ease 0s infinite normal none;
+  }
+
+  @keyframes myLoading {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   @media (max-width: 1031px) {
     div {
       width: 46.5rem;

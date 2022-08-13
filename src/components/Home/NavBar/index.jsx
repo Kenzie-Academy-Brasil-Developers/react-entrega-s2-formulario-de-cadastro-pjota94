@@ -7,7 +7,9 @@ const NavBar = () => {
 
   const handleLogin = () => {
     window.localStorage.clear();
-    toast.success("Usuário Deslogado");
+    toast.success("Usuário Deslogado", {
+      theme: "dark",
+    });
     navigate("/", { replace: true });
   };
   return (

@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import Header from "../../components/Home/Header";
 import Main from "../../components/Home/Main";
-import MainVazio from "../../components/Home/MainVazio";
 import Modal from "../../components/Home/Modal";
 import ModalEditar from "../../components/Home/ModalEditar";
 import NavBar from "../../components/Home/NavBar";
-import { Container } from "./styles";
+import { AuthContext } from "../../context/UserContext";
+import { Container, Loading } from "./styles";
 
 const Home = () => {
-  const [isModal, setIsModal] = useState(false);
-  const [isModalEdit, setIsModalEdit] = useState(false);
+  const { userResponse, loading, isModal, isModalEdit } =
+    useContext(AuthContext);
+
   const [dadosUser, setDadosUser] = useState("");
-  const [idCard, setIdCard] = useState("");
+  // const [idCard, setIdCard] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,25 +21,30 @@ const Home = () => {
     navigate("/", { replace: true });
   };
 
-  return (
+  if (loading)
+    return (
+      <Loading>
+        <p>Carregando...</p>
+      </Loading>
+    );
+
+  return userResponse ? (
     <>
       <Container>
         <NavBar handleLogin={handleLogin} />
         <Header dadosUser={dadosUser} setDadosUser={setDadosUser} />
 
         <Main
-          setIsModal={setIsModal}
           dadosUser={dadosUser}
           setDadosUser={setDadosUser}
-          setIsModalEdit={setIsModalEdit}
-          setIdCard={setIdCard}
+          // setIdCard={setIdCard}
         />
       </Container>
-      {isModal && <Modal setIsModal={setIsModal} />}
-      {isModalEdit && (
-        <ModalEditar setIsModalEdit={setIsModalEdit} idCard={idCard} />
-      )}
+      {isModal && <Modal />}
+      {isModalEdit && <ModalEditar />}
     </>
+  ) : (
+    <Navigate to="/" replace />
   );
 };
 

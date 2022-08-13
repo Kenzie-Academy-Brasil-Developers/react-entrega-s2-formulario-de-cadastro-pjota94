@@ -1,30 +1,18 @@
 import { Container } from "./styles";
 import { FiTrash } from "react-icons/fi";
+import { useContext } from "react";
+import { AuthTechs } from "../../../context/TechContext";
+import { AuthContext } from "../../../context/UserContext";
 
-const Cards = ({ title, status, id, setIsModalEdit, setIdCard }) => {
+const Cards = ({ title, status, id }) => {
+  const { deleteTech } = useContext(AuthTechs);
+  const { setIsModalEdit, setIdCard } = useContext(AuthContext);
+
   const abrirModal = (e) => {
     if (e.target.id !== "") {
       setIsModalEdit(true);
       setIdCard(e.target.id);
     }
-  };
-
-  const token = window.localStorage.getItem("@kenzie:token");
-
-  const handleDelete = (e) => {
-    const idCard = e.currentTarget.id;
-    fetch(`https://kenziehub.herokuapp.com/users/techs/${idCard}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        window.location.reload(true);
-      })
-      .catch((err) => console.log(err));
   };
 
   return (
@@ -33,7 +21,7 @@ const Cards = ({ title, status, id, setIsModalEdit, setIdCard }) => {
         <p>{title}</p>
         <div className="auxiliar" onClick={abrirModal} id={id}>
           <span>{status}</span>
-          <button onClick={handleDelete} id={id}>
+          <button onClick={(e) => deleteTech(e)} id={id}>
             <FiTrash />
           </button>
         </div>

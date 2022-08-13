@@ -24,10 +24,10 @@ const Header = ({ dadosUser, setDadosUser }) => {
         </div>
       ) : (
         <div>
-          <p>
+          <p className="loading">
             <AiOutlineLoading3Quarters />
           </p>
-          <span>
+          <span className="loading">
             <AiOutlineLoading3Quarters />
           </span>
         </div>

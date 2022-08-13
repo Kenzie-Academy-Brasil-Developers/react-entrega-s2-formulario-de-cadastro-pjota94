@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../context/UserContext";
 import { Container } from "./styles";
 
-const DivTop = ({ setIsModal }) => {
+const DivTop = () => {
+  const { setIsModal } = useContext(AuthContext);
   const fecharModal = () => {
     setIsModal(false);
   };
