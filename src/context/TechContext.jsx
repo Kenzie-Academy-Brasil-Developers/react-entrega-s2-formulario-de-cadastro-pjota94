@@ -12,14 +12,15 @@ const TechContexts = ({ children }) => {
 
   const createTech = async (data) => {
     try {
-      const { data: newData } = await api.post("/users/techs", data);
       api.defaults.headers.authorization = `Bearer ${token}`;
+      const { data: newData } = await api.post("/users/techs", data);
       setTechs([newData, ...techs]);
       setIsModal(false);
       toast.success("Tecnologia Adicionada!", {
         theme: "dark",
       });
     } catch (error) {
+      console.log(error);
       toast.error("Você já adicionou está Tecnologia!", {
         theme: "dark",
       });
@@ -34,9 +35,8 @@ const TechContexts = ({ children }) => {
     });
 
     try {
-      const response = await api.delete(`/users/techs/${idCard}`);
-      console.log(response);
       api.defaults.headers.authorization = `Bearer ${token}`;
+      const response = await api.delete(`/users/techs/${idCard}`);
       setTechs(filterDel);
       toast.info("Tecnologia Deletada!", {
         theme: "dark",
@@ -48,8 +48,8 @@ const TechContexts = ({ children }) => {
 
   const updateTech = async (data) => {
     try {
-      const { data: newData } = await api.put(`/users/techs/${idCard}`, data);
       api.defaults.headers.authorization = `Bearer ${token}`;
+      const { data: newData } = await api.put(`/users/techs/${idCard}`, data);
       console.log(newData);
       const update = techs.filter(({ id }) => {
         return id !== idCard;

@@ -5,6 +5,17 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: myAnim 1s ease 0s 1 normal forwards;
+
+  @keyframes myAnim {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 
   .card {
     width: 61rem;

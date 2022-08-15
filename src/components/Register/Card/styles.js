@@ -9,6 +9,17 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: myAnim 1s ease 0s 1 normal forwards;
+
+  @keyframes myAnim {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 
   .tittle {
     margin-bottom: 1.375rem;

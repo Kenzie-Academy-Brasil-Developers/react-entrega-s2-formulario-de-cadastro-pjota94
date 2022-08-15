@@ -39,11 +39,11 @@ const UserContext = ({ children }) => {
       .post("/sessions", data)
       .then((res) => {
         const { user, token } = res.data;
-        setUser(user);
-        setTechs(user.techs);
         window.localStorage.clear();
         window.localStorage.setItem("@kenzie:token", token);
         window.localStorage.setItem("@kenzie:id", user.id);
+        setUser(user);
+        setTechs(user.techs);
         navigate("/home", { replace: true });
         toast.success("Usuário logado com sucesso", {
           theme: "dark",
