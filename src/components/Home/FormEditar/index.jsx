@@ -8,25 +8,6 @@ const FormEditar = () => {
 
   const { updateTech } = useContext(AuthTechs);
 
-  // const token = window.localStorage.getItem("@kenzie:token");
-
-  // const onSubmit = (data) => {
-  //   fetch(`https://kenziehub.herokuapp.com/users/techs/${idCard}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       console.log(response);
-  //       window.location.reload(true);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
   return (
     <Container>
       <form onSubmit={handleSubmit(updateTech)}>

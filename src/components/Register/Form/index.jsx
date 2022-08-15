@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../../../validator/registerUser";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/UserContext";
+import InputRegister from "../InputRegister";
 
 const Form = () => {
   const { onRegister } = useContext(AuthContext);
@@ -18,31 +19,53 @@ const Form = () => {
   return (
     <FormStyle onSubmit={handleSubmit(onRegister)}>
       <label>Nome</label>
-      <input placeholder="Digite aqui seu nome" {...register("name")} />
-      <p className="error">{errors.name?.message}</p>
+      <InputRegister
+        id="name"
+        register={register}
+        error={errors?.name}
+        placeholder={"Digite aqui seu nome"}
+      />
+
       <label>Email</label>
-      <input placeholder="Digite aqui seu email" {...register("email")} />
-      <p className="error">{errors.email?.message}</p>
+      <InputRegister
+        id="email"
+        register={register}
+        error={errors?.email}
+        placeholder={"Digite aqui seu email"}
+      />
       <label>Senha</label>
-      <input
-        type="password"
-        placeholder="Digite aqui sua senha"
-        {...register("password")}
+      <InputRegister
+        id="password"
+        register={register}
+        error={errors?.password}
+        placeholder={"Digite aqui sua senha"}
+        type={"password"}
       />
-      <p className="error">{errors.password?.message}</p>
       <label>Confirmar Senha</label>
-      <input
-        type="password"
-        placeholder="Digite novamente sua senha"
-        {...register("ConfirmedPassword")}
+      <InputRegister
+        id="ConfirmedPassword"
+        register={register}
+        error={errors?.ConfirmedPassword}
+        placeholder={"Digite novamente sua senha"}
+        type={"password"}
       />
-      <p className="error">{errors.ConfirmedPassword?.message}</p>
+
       <label>Bio</label>
-      <input placeholder="Fale sobre você" {...register("bio")} />
-      <p className="error">{errors.bio?.message}</p>
+      <InputRegister
+        id="bio"
+        register={register}
+        error={errors?.bio}
+        placeholder={"Fale sobre você"}
+      />
+
       <label>Contato</label>
-      <input placeholder="Opção de contato" {...register("contact")} />
-      <p className="error">{errors.contact?.message}</p>
+      <InputRegister
+        id="contact"
+        register={register}
+        error={errors?.contact}
+        placeholder={"Opção de contato"}
+      />
+
       <label>Selecionar Modulo</label>
       <select {...register("course_module")}>
         {errors.course_module?.message}

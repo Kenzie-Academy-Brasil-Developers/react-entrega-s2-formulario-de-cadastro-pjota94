@@ -30,8 +30,9 @@ export const FormStyle = styled.form`
     line-height: 26px;
     border: none;
   }
+
   input:focus {
-    border: 1.2182px solid #f8f9fa;
+    color: rgba(248, 249, 250, 1);
   }
 
   input::placeholder {

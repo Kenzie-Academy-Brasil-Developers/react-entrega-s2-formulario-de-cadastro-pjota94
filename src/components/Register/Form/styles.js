@@ -17,8 +17,11 @@ export const FormStyle = styled.form`
     border-radius: 4px;
     width: 20.62rem;
     height: 3rem;
-    margin-bottom: 10px;
     padding-left: 1.014rem;
+  }
+
+  input:focus {
+    color: rgba(248, 249, 250, 1);
   }
 
   input::placeholder {
@@ -40,11 +43,6 @@ export const FormStyle = styled.form`
     font-weight: 400;
     font-size: 16.2426px;
     line-height: 26px;
-  }
-
-  input:focus {
-    border: 1.2182px solid #f8f9fa;
-    color: #f8f9fa;
   }
 
   button {
@@ -72,8 +70,13 @@ export const FormStyle = styled.form`
       width: 16.5rem;
     }
 
+    input::placeholder {
+      font-size: 13px;
+    }
+
     select {
       width: 16.5rem;
+      font-size: 13px;
     }
 
     button {
