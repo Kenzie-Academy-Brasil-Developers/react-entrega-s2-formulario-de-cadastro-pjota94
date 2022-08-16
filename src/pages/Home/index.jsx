@@ -13,7 +13,6 @@ const Home = () => {
     useContext(AuthContext);
 
   const [dadosUser, setDadosUser] = useState("");
-  // const [idCard, setIdCard] = useState("");
 
   const navigate = useNavigate();
 
@@ -34,11 +33,7 @@ const Home = () => {
         <NavBar handleLogin={handleLogin} />
         <Header dadosUser={dadosUser} setDadosUser={setDadosUser} />
 
-        <Main
-          dadosUser={dadosUser}
-          setDadosUser={setDadosUser}
-          // setIdCard={setIdCard}
-        />
+        <Main dadosUser={dadosUser} setDadosUser={setDadosUser} />
       </Container>
       {isModal && <Modal />}
       {isModalEdit && <ModalEditar />}

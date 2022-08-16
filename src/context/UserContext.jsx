@@ -90,6 +90,7 @@ const UserContext = ({ children }) => {
         setIsModalEdit,
         idCard,
         setIdCard,
+        setUser,
       }}
     >
       {children}

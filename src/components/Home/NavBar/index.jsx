@@ -2,7 +2,10 @@ import { Container } from "./styles";
 import logo from "../../../assets/Logo.svg";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/UserContext";
 const NavBar = () => {
+  const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -10,6 +13,7 @@ const NavBar = () => {
     toast.success("Usuário Deslogado", {
       theme: "dark",
     });
+    setUser(null);
     navigate("/", { replace: true });
   };
   return (
