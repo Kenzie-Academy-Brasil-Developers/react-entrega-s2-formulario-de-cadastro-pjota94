@@ -3,7 +3,7 @@ import { FormStyle } from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../../../validator/loginUser";
 import { useContext } from "react";
-import { AuthContext } from "../../../context/UserContext";
+import { AuthContext, ILoginProps } from "../../../context/UserContext";
 import Input from "../Input";
 
 const Form = () => {
@@ -13,7 +13,7 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ILoginProps>({
     resolver: yupResolver(schema),
   });
 
@@ -22,6 +22,7 @@ const Form = () => {
       <label className="label-email">Email</label>
       <Input
         id="email"
+        name={"email"}
         register={register}
         error={errors?.email}
         placeholder={"Digite seu nome"}
@@ -29,6 +30,7 @@ const Form = () => {
       <label className="label-senha">Senha</label>
       <Input
         id="password"
+        name={"password"}
         register={register}
         error={errors?.password}
         placeholder={"Digite sua senha"}

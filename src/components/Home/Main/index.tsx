@@ -4,7 +4,7 @@ import Cards from "../Cards";
 import MainVazio from "../MainVazio";
 import { Container } from "./styles";
 
-const Main = ({ setDadosUser }) => {
+const Main = () => {
   const { techs, setIsModal } = useContext(AuthContext);
 
   const abrirModal = () => {
@@ -28,7 +28,6 @@ const Main = ({ setDadosUser }) => {
             {techs.map((elem, index) => (
               <Cards
                 id={elem.id}
-                setDadosUser={setDadosUser}
                 key={index}
                 title={elem.title}
                 status={elem.status}

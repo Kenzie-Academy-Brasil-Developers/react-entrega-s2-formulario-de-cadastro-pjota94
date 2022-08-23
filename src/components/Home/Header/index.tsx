@@ -3,7 +3,14 @@ import api from "../../../services/api";
 import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-const Header = ({ dadosUser, setDadosUser }) => {
+interface IDadosUser {
+  name: string;
+  course_module: string;
+}
+
+const Header = () => {
+  const [dadosUser, setDadosUser] = useState<IDadosUser>({} as IDadosUser);
+
   const idUser = window.localStorage.getItem("@kenzie:id");
 
   useEffect(() => {
@@ -14,7 +21,6 @@ const Header = ({ dadosUser, setDadosUser }) => {
       })
       .catch((err) => console.log(err));
   }, [idUser]);
-
   return (
     <Container>
       {dadosUser ? (

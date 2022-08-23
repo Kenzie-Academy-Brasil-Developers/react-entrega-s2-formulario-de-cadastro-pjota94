@@ -4,13 +4,14 @@ import DivTopEditar from "../DivTopEditar";
 import FormEditar from "../FormEditar";
 import { Container } from "./styles";
 
-const ModalEditar = ({ idCard }) => {
+const ModalEditar = () => {
   const { setIsModalEdit } = useContext(AuthContext);
-  const modalRef = useRef();
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const handleClick = (event) => {
-      if (!modalRef.current.contains(event.target)) {
+    const handleClick = (event: Event) => {
+      const target = event.target as HTMLButtonElement;
+      if (!modalRef.current?.contains(target)) {
         setIsModalEdit(false);
       }
     };
@@ -26,7 +27,7 @@ const ModalEditar = ({ idCard }) => {
     <Container>
       <div className="modal-edit" ref={modalRef}>
         <DivTopEditar />
-        <FormEditar idCard={idCard} />
+        <FormEditar />
       </div>
     </Container>
   );

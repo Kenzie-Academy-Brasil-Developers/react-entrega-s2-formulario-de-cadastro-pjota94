@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 import Header from "../../components/Home/Header";
 import Main from "../../components/Home/Main";
 import Modal from "../../components/Home/Modal";
@@ -12,14 +12,6 @@ const Home = () => {
   const { userResponse, loading, isModal, isModalEdit } =
     useContext(AuthContext);
 
-  const [dadosUser, setDadosUser] = useState("");
-
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    navigate("/", { replace: true });
-  };
-
   if (loading)
     return (
       <Loading>
@@ -30,10 +22,10 @@ const Home = () => {
   return userResponse ? (
     <>
       <Container>
-        <NavBar handleLogin={handleLogin} />
-        <Header dadosUser={dadosUser} setDadosUser={setDadosUser} />
+        <NavBar />
+        <Header />
 
-        <Main dadosUser={dadosUser} setDadosUser={setDadosUser} />
+        <Main />
       </Container>
       {isModal && <Modal />}
       {isModalEdit && <ModalEditar />}

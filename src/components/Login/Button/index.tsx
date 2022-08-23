@@ -1,6 +1,10 @@
 import { ButtonStyle } from "./styles";
 
-const Button = ({ handleRegister }) => {
+export interface IButtonRegisterProp {
+  handleRegister: () => void;
+}
+
+const Button = ({ handleRegister }: IButtonRegisterProp) => {
   return <ButtonStyle onClick={handleRegister}>Cadastre-se</ButtonStyle>;
 };
 

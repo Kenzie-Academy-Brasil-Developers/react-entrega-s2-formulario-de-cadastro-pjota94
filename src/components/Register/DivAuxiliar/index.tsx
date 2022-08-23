@@ -1,6 +1,11 @@
 import { Container } from "./styles";
 import logo from "../../../assets/Logo.svg";
-const DivAuxiliar = ({ handleInicio }) => {
+
+interface IDivAuxiliarProps {
+  handleInicio: () => void;
+}
+
+const DivAuxiliar = ({ handleInicio }: IDivAuxiliarProps) => {
   return (
     <Container>
       <img src={logo} alt="" />

@@ -1,19 +1,18 @@
 import { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import Card from "../../components/Register/Card";
-import DivAuxiliar from "../../components/Register/DivAuxiliar";
+import Card from "../../components/Login/Card";
+import Logo from "../../components/Login/Logo";
 import { AuthContext } from "../../context/UserContext";
 import { Loading } from "../Home/styles";
 import { Container } from "./styles";
 
-const Register = () => {
+const Login = () => {
   const { userResponse, loading } = useContext(AuthContext);
+
   const navigate = useNavigate();
-  const handleHome = () => {
-    navigate("/home", { replace: true });
-  };
-  const handleInicio = () => {
-    navigate("/", { replace: true });
+
+  const handleRegister = () => {
+    navigate("/register", { replace: true });
   };
 
   if (loading)
@@ -22,16 +21,17 @@ const Register = () => {
         <p>Carregando...</p>
       </Loading>
     );
+
   return userResponse ? (
     <Navigate to="/home" replace />
   ) : (
     <>
-      <Container className="test">
-        <DivAuxiliar handleInicio={handleInicio} />
-        <Card handleHome={handleHome} />
+      <Container>
+        <Logo />
+        <Card handleRegister={handleRegister}></Card>
       </Container>
     </>
   );
 };
 
-export default Register;
+export default Login;

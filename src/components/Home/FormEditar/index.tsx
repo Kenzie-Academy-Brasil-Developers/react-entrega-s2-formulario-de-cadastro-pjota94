@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AuthTechs } from "../../../context/TechContext";
+import { AuthTechs, IUpdateProps } from "../../../context/TechContext";
 import { Container } from "./styles";
 
 const FormEditar = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<IUpdateProps>();
 
   const { updateTech } = useContext(AuthTechs);
 

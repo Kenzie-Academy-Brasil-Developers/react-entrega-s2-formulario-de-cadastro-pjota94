@@ -1,12 +1,12 @@
 import Form from "../Form";
 import { Container } from "./styles";
 
-const Card = ({ handleHome }) => {
+const Card = () => {
   return (
     <Container>
       <p className="tittle">Crie sua conta</p>
       <span>Rapido e grátis, vamos nessa</span>
-      <Form handleHome={handleHome} />
+      <Form />
     </Container>
   );
 };

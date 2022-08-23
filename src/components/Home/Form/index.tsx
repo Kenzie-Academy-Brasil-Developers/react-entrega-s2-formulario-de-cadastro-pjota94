@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { AuthTechs } from "../../../context/TechContext";
+import { ICreateTechsProps } from "../../../context/UserContext";
 
 const Form = () => {
   const schema = yup.object({
@@ -13,7 +14,7 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ICreateTechsProps>({
     resolver: yupResolver(schema),
   });
 

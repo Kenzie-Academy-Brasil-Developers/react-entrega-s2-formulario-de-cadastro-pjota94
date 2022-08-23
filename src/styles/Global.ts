@@ -11,7 +11,7 @@ export default createGlobalStyle`
   body{
     background-color: rgba(18, 18, 20,1);
   }
-  
+
   button{
     cursor: pointer;
   }

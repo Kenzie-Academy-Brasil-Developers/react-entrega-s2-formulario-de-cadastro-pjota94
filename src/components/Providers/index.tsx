@@ -1,7 +1,7 @@
 import TechContexts from "../../context/TechContext";
-import UserContext from "../../context/UserContext";
+import UserContext, { IProviderProps } from "../../context/UserContext";
 
-const Providers = ({ children }) => {
+const Providers = ({ children }: IProviderProps) => {
   return (
     <>
       <UserContext>

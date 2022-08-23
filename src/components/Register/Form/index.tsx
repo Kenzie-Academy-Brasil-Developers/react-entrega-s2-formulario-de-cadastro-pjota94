@@ -3,7 +3,7 @@ import { FormStyle } from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../../../validator/registerUser";
 import { useContext } from "react";
-import { AuthContext } from "../../../context/UserContext";
+import { AuthContext, IRegisterProps } from "../../../context/UserContext";
 import InputRegister from "../InputRegister";
 
 const Form = () => {
@@ -12,7 +12,7 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IRegisterProps>({
     resolver: yupResolver(schema),
   });
 
@@ -21,6 +21,7 @@ const Form = () => {
       <label>Nome</label>
       <InputRegister
         id="name"
+        name={"name"}
         register={register}
         error={errors?.name}
         placeholder={"Digite aqui seu nome"}
@@ -29,6 +30,7 @@ const Form = () => {
       <label>Email</label>
       <InputRegister
         id="email"
+        name={"email"}
         register={register}
         error={errors?.email}
         placeholder={"Digite aqui seu email"}
@@ -36,6 +38,7 @@ const Form = () => {
       <label>Senha</label>
       <InputRegister
         id="password"
+        name={"password"}
         register={register}
         error={errors?.password}
         placeholder={"Digite aqui sua senha"}
@@ -44,6 +47,7 @@ const Form = () => {
       <label>Confirmar Senha</label>
       <InputRegister
         id="ConfirmedPassword"
+        name={"ConfirmedPassword"}
         register={register}
         error={errors?.ConfirmedPassword}
         placeholder={"Digite novamente sua senha"}
@@ -53,6 +57,7 @@ const Form = () => {
       <label>Bio</label>
       <InputRegister
         id="bio"
+        name={"bio"}
         register={register}
         error={errors?.bio}
         placeholder={"Fale sobre você"}
@@ -61,6 +66,7 @@ const Form = () => {
       <label>Contato</label>
       <InputRegister
         id="contact"
+        name={"contact"}
         register={register}
         error={errors?.contact}
         placeholder={"Opção de contato"}
