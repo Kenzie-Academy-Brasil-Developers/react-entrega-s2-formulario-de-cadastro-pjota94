@@ -15,7 +15,7 @@ export interface IUpdateProps {
 interface IValuesProps {
   createTech: (data: ICreateTechsProps) => void;
   updateTech: (data: IUpdateProps) => void;
-  deleteTech: (event: Event) => void;
+  deleteTech: (event: React.FormEvent<HTMLButtonElement>) => void;
 }
 
 export const AuthTechs = createContext<IValuesProps>({} as IValuesProps);
@@ -46,8 +46,8 @@ const TechContexts = ({ children }: IProviderProps) => {
     }
   };
 
-  const deleteTech = async (event: Event) => {
-    const currentTarget = event.currentTarget as HTMLButtonElement;
+  const deleteTech = async (event: React.FormEvent<HTMLButtonElement>) => {
+    const currentTarget = event.currentTarget;
     const idCard = currentTarget.id;
 
     const filterDel = techs.filter(({ id }) => {
