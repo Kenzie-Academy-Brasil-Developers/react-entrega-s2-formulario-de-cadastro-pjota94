@@ -2,6 +2,7 @@ import { Container } from "./style";
 import api from "../../../services/api";
 import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { IAxiosProfile } from "../../../services/interfacesUser";
 
 interface IDadosUser {
   name: string;
@@ -15,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     api
-      .get(`/users/${idUser}`)
+      .get<IAxiosProfile>(`/users/${idUser}`)
       .then((response) => {
         setDadosUser(response.data);
       })

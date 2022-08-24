@@ -7,6 +7,7 @@ import {
   IProviderProps,
 } from "./UserContext";
 import { toast } from "react-toastify";
+import { IAxiosCreate, IAxiosUpdate } from "../services/interfacesUser";
 
 export interface IUpdateProps {
   status: string;
@@ -31,7 +32,10 @@ const TechContexts = ({ children }: IProviderProps) => {
       api.defaults.headers = {
         Authorization: `Bearer ${token}`,
       } as CommonHeaderProperties;
-      const { data: newData } = await api.post("/users/techs", data);
+      const { data: newData } = await api.post<IAxiosCreate>(
+        "/users/techs",
+        data
+      );
       setTechs([newData, ...techs]);
       setIsModal(false);
       toast.success("Tecnologia Adicionada!", {
@@ -58,8 +62,8 @@ const TechContexts = ({ children }: IProviderProps) => {
       api.defaults.headers = {
         Authorization: `Bearer ${token}`,
       } as CommonHeaderProperties;
-      const response = await api.delete(`/users/techs/${idCard}`);
-      console.log(response);
+      const response = await api.delete<"">(`/users/techs/${idCard}`);
+      console.log(response.data);
       setTechs(filterDel);
       toast.info("Tecnologia Deletada!", {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -75,8 +79,10 @@ const TechContexts = ({ children }: IProviderProps) => {
       api.defaults.headers = {
         Authorization: `Bearer ${token}`,
       } as CommonHeaderProperties;
-      const { data: newData } = await api.put(`/users/techs/${idCard}`, data);
-      console.log(newData);
+      const { data: newData } = await api.put<IAxiosUpdate>(
+        `/users/techs/${idCard}`,
+        data
+      );
       const update = techs.filter(({ id }) => {
         return id !== idCard;
       });

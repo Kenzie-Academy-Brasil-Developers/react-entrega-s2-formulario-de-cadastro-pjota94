@@ -1,4 +1,5 @@
 import { HeadersDefaults } from "axios";
+
 import {
   createContext,
   Dispatch,
@@ -10,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
+import { IAxiosLogin, IAxiosProfile } from "../services/interfacesUser";
 
 export interface IProviderProps {
   children: ReactNode;
@@ -37,7 +39,7 @@ export interface ICreateTechsProps {
 }
 
 interface IValuesProps {
-  userResponse: null;
+  userResponse: IAxiosProfile | null;
   loading: boolean;
   techs: ICreateTechsProps[];
   isModal: boolean;
@@ -49,7 +51,7 @@ interface IValuesProps {
   setIsModal: Dispatch<SetStateAction<boolean>>;
   setIsModalEdit: Dispatch<SetStateAction<boolean>>;
   setIdCard: Dispatch<SetStateAction<string>>;
-  setUser: Dispatch<SetStateAction<null>>;
+  setUser: Dispatch<SetStateAction<IAxiosProfile | null>>;
 }
 
 export interface CommonHeaderProperties extends HeadersDefaults {
@@ -59,7 +61,7 @@ export interface CommonHeaderProperties extends HeadersDefaults {
 export const AuthContext = createContext<IValuesProps>({} as IValuesProps);
 
 const UserContext = ({ children }: IProviderProps) => {
-  const [userResponse, setUser] = useState<null>(null);
+  const [userResponse, setUser] = useState<IAxiosProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [techs, setTechs] = useState<ICreateTechsProps[]>([]);
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -77,7 +79,7 @@ const UserContext = ({ children }: IProviderProps) => {
           api.defaults.headers = {
             Authorization: `Bearer ${token}`,
           } as CommonHeaderProperties;
-          const { data } = await api.get("/profile");
+          const { data } = await api.get<IAxiosProfile>("/profile");
           setUser(data);
           setTechs(data.techs);
         } catch (error) {
@@ -92,7 +94,7 @@ const UserContext = ({ children }: IProviderProps) => {
 
   const onLogin = (data: ILoginProps) => {
     api
-      .post("/sessions", data)
+      .post<IAxiosLogin>("/sessions", data)
       .then((res) => {
         const { user, token } = res.data;
         window.localStorage.clear();
@@ -117,7 +119,7 @@ const UserContext = ({ children }: IProviderProps) => {
 
   const onRegister = (data: IRegisterProps) => {
     api
-      .post("/users", data)
+      .post<IAxiosProfile>("/users", data)
       .then((res) => {
         console.log(res);
         navigate("/", { replace: true });

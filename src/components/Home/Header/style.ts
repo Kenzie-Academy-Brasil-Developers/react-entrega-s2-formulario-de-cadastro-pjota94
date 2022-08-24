@@ -12,6 +12,12 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  //cod novo
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  }
 
   p {
     font-weight: 700;
