@@ -7,23 +7,46 @@ import {
   IProviderProps,
 } from "./UserContext";
 import { toast } from "react-toastify";
-import { IAxiosCreate, IAxiosUpdate } from "../services/interfacesUser";
+import {
+  IAxiosCreate,
+  IAxiosUpdate,
+  ICreateWorksProp,
+  IUpdateWorksProp,
+} from "../services/interfacesUser";
+import { ICreateWorks } from "../components/Home/FormWorks";
 
 export interface IUpdateProps {
   status: string;
+}
+
+export interface IUpdateWorks {
+  title: string;
+  description: string;
 }
 
 interface IValuesProps {
   createTech: (data: ICreateTechsProps) => void;
   updateTech: (data: IUpdateProps) => void;
   deleteTech: (event: React.FormEvent<HTMLButtonElement>) => void;
+  createWorks: (data: ICreateWorks) => void;
+  deleteWork: (event: React.FormEvent<HTMLButtonElement>) => void;
+  updateWork: (data: IUpdateWorks) => void;
 }
 
 export const AuthTechs = createContext<IValuesProps>({} as IValuesProps);
 
 const TechContexts = ({ children }: IProviderProps) => {
-  const { techs, setTechs, setIsModal, idCard, setIsModalEdit } =
-    useContext(AuthContext);
+  const {
+    techs,
+    setTechs,
+    setIsModal,
+    idCard,
+    setIsModalEdit,
+    setIsModalWorks,
+    works,
+    setWorks,
+    setIsModalEditWork,
+  } = useContext(AuthContext);
   const token = localStorage.getItem("@kenzie:token");
 
   const createTech = async (data: ICreateTechsProps) => {
@@ -50,6 +73,29 @@ const TechContexts = ({ children }: IProviderProps) => {
     }
   };
 
+  const createWorks = async (data: ICreateWorks) => {
+    try {
+      api.defaults.headers = {
+        Authorization: `Bearer ${token}`,
+      } as CommonHeaderProperties;
+      const { data: newData } = await api.post<ICreateWorksProp>(
+        "/users/works",
+        data
+      );
+      setWorks([newData, ...works]);
+      setIsModalWorks(false);
+      toast.success("Trabalho Adicionado!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        theme: "dark",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Você já adicionou este Trabalho!", {
+        theme: "dark",
+      });
+    }
+  };
+
   const deleteTech = async (event: React.FormEvent<HTMLButtonElement>) => {
     const currentTarget = event.currentTarget;
     const idCard = currentTarget.id;
@@ -63,9 +109,31 @@ const TechContexts = ({ children }: IProviderProps) => {
         Authorization: `Bearer ${token}`,
       } as CommonHeaderProperties;
       const response = await api.delete<"">(`/users/techs/${idCard}`);
-      console.log(response.data);
       setTechs(filterDel);
-      toast.info("Tecnologia Deletada!", {
+      toast.info("Trabalho Deletado!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        theme: "dark",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteWork = async (event: React.FormEvent<HTMLButtonElement>) => {
+    const currentTarget = event.currentTarget;
+    const idCard = currentTarget.id;
+
+    const filterDel = works.filter(({ id }) => {
+      return id !== idCard;
+    });
+
+    try {
+      api.defaults.headers = {
+        Authorization: `Bearer ${token}`,
+      } as CommonHeaderProperties;
+      const response = await api.delete<"">(`/users/works/${idCard}`);
+      setWorks(filterDel);
+      toast.info("Trabalho Deletado!", {
         position: toast.POSITION.BOTTOM_RIGHT,
         theme: "dark",
       });
@@ -97,8 +165,40 @@ const TechContexts = ({ children }: IProviderProps) => {
     }
   };
 
+  const updateWork = async (data: IUpdateWorks) => {
+    try {
+      api.defaults.headers = {
+        Authorization: `Bearer ${token}`,
+      } as CommonHeaderProperties;
+      const { data: newData } = await api.put<IUpdateWorksProp>(
+        `/users/works/${idCard}`,
+        data
+      );
+      const update = works.filter(({ id }) => {
+        return id !== idCard;
+      });
+      setWorks([newData, ...update]);
+      setIsModalEditWork(false);
+      toast.info("Trabalho Editado!.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        theme: "dark",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <AuthTechs.Provider value={{ createTech, deleteTech, updateTech }}>
+    <AuthTechs.Provider
+      value={{
+        createTech,
+        deleteTech,
+        updateTech,
+        createWorks,
+        deleteWork,
+        updateWork,
+      }}
+    >
       {children}
     </AuthTechs.Provider>
   );

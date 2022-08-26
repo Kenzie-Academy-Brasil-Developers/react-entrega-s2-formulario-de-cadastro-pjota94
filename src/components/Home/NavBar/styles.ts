@@ -26,7 +26,9 @@ export const Container = styled.div`
   }
 
   button:hover {
-    background-color: rgba(52, 59, 65, 1);
+    background-color: rgb(52, 59, 65);
+    border: 1px solid rgba(248, 249, 250, 1);
+    border-bottom: 3px solid rgba(248, 249, 250, 1);
   }
 
   @media (max-width: 1031px) {

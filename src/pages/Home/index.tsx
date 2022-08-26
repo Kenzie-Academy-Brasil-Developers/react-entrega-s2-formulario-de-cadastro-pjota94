@@ -4,13 +4,22 @@ import Header from "../../components/Home/Header";
 import Main from "../../components/Home/Main";
 import Modal from "../../components/Home/Modal";
 import ModalEditar from "../../components/Home/ModalEditar";
+import ModalEditWork from "../../components/Home/ModalEditWork";
+import ModalWorks from "../../components/Home/ModalWorks";
 import NavBar from "../../components/Home/NavBar";
 import { AuthContext } from "../../context/UserContext";
 import { Container, Loading } from "./styles";
 
 const Home = () => {
-  const { userResponse, loading, isModal, isModalEdit } =
-    useContext(AuthContext);
+  const {
+    userResponse,
+    loading,
+    isModal,
+    isModalEdit,
+    isModalWorks,
+    isModalEditWork,
+    setIsModalEditWork,
+  } = useContext(AuthContext);
 
   if (loading)
     return (
@@ -29,6 +38,8 @@ const Home = () => {
       </Container>
       {isModal && <Modal />}
       {isModalEdit && <ModalEditar />}
+      {isModalWorks && <ModalWorks />}
+      {isModalEditWork && <ModalEditWork />}
     </>
   ) : (
     <Navigate to="/" replace />

@@ -29,3 +29,26 @@ export interface IAxiosUpdate {
   title: string;
   updated_at: string;
 }
+
+interface IUserWork {
+  id: string;
+}
+
+export interface ICreateWorksProp {
+  created_at: string;
+  deploy_url: string;
+  updated_at: string;
+  description: string;
+  id: string;
+  title: string;
+  user: IUserWork;
+}
+
+export interface IUpdateWorksProp {
+  created_at: string;
+  deploy_url: string;
+  updated_at: string;
+  description: string;
+  id: string;
+  title: string;
+}

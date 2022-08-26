@@ -1,12 +1,12 @@
 body::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
 }
 body::-webkit-scrollbar-track {
-  border-radius: 10px;
+  border-radius: 7px;
 }
 body::-webkit-scrollbar-thumb {
   background: rgba(255, 87, 127, 1);
-  border-radius: 10px;
+  border-radius: 7px;
 }
 body::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 87, 127, 1);

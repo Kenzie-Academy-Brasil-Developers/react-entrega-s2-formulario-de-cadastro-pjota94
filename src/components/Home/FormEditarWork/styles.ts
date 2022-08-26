@@ -67,6 +67,10 @@ export const Container = styled.div`
     color: #f8f9fa;
   }
 
+  .input-work {
+    margin-bottom: 10px;
+  }
+
   button {
     width: 20.562rem;
     height: 3rem;

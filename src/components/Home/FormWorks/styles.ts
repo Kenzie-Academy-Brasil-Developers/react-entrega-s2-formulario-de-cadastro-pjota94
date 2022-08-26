@@ -19,13 +19,18 @@ export const Container = styled.div`
   }
 
   .nome {
-    margin-top: 1.5rem;
-    margin-bottom: 1.375rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .status {
-    margin-bottom: 1.375rem;
-    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .link {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
   }
 
   input {
@@ -35,6 +40,17 @@ export const Container = styled.div`
     background: #343b41;
     border: none;
     padding-left: 1rem;
+    /* margin-bottom: 1.5rem; */
+  }
+
+  .input-link {
+    width: 20.562rem;
+    height: 3rem;
+    border-radius: 4px;
+    background: #343b41;
+    border: none;
+    padding-left: 1rem;
+    margin-bottom: 5px;
   }
 
   input::placeholder {
@@ -100,6 +116,10 @@ export const Container = styled.div`
     }
 
     button {
+      width: 14.562rem;
+    }
+
+    .input-link {
       width: 14.562rem;
     }
   }

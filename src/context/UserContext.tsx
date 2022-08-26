@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ICreateWorks } from "../components/Home/FormWorks";
 import api from "../services/api";
 import { IAxiosLogin, IAxiosProfile } from "../services/interfacesUser";
 
@@ -52,6 +53,12 @@ interface IValuesProps {
   setIsModalEdit: Dispatch<SetStateAction<boolean>>;
   setIdCard: Dispatch<SetStateAction<string>>;
   setUser: Dispatch<SetStateAction<IAxiosProfile | null>>;
+  isModalWorks: boolean;
+  setIsModalWorks: Dispatch<SetStateAction<boolean>>;
+  works: ICreateWorks[];
+  setWorks: Dispatch<SetStateAction<ICreateWorks[]>>;
+  isModalEditWork: boolean;
+  setIsModalEditWork: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface CommonHeaderProperties extends HeadersDefaults {
@@ -67,6 +74,9 @@ const UserContext = ({ children }: IProviderProps) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const [isModalEdit, setIsModalEdit] = useState<boolean>(false);
   const [idCard, setIdCard] = useState<string>("");
+  const [isModalWorks, setIsModalWorks] = useState<boolean>(false);
+  const [works, setWorks] = useState<ICreateWorks[]>([]);
+  const [isModalEditWork, setIsModalEditWork] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -82,6 +92,8 @@ const UserContext = ({ children }: IProviderProps) => {
           const { data } = await api.get<IAxiosProfile>("/profile");
           setUser(data);
           setTechs(data.techs);
+          setWorks(data.works);
+          console.log(works);
         } catch (error) {
           window.localStorage.clear();
         }
@@ -153,6 +165,12 @@ const UserContext = ({ children }: IProviderProps) => {
         idCard,
         setIdCard,
         setUser,
+        isModalWorks,
+        setIsModalWorks,
+        works,
+        setWorks,
+        isModalEditWork,
+        setIsModalEditWork,
       }}
     >
       {children}
